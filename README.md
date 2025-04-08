@@ -67,3 +67,4 @@ if df_results is not None:
     heatmap = preprocess_heatmap_data(df_results, top_n_teams=15)
     plot_heatmap(heatmap)
 
+ℹ️ Le DataFrame est filtré uniquement sur les matchs joués dans des compétitions majeures : "FIFA World Cup" et "UEFA Euro".
