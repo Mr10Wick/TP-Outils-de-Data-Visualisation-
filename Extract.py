@@ -30,10 +30,10 @@ def preprocess_heatmap_data(df_results, top_n_teams=15):
     return heatmap_data
 
 # 3. Fonction de visualisation
-def plot_heatmap(data):
-    plt.figure(figsize=(12,10))
-    sns.heatmap(data, annot=True, fmt="g", cmap="Blues", linewidths=0.5)
-    plt.title("Confrontations entre grandes nations de football")
+def plot_heatmap(data, title="Confrontations entre grandes nations", cmap="Blues", size=(12, 10)):
+    plt.figure(figsize=size)
+    sns.heatmap(data, annot=True, fmt="g", cmap=cmap, linewidths=0.5)
+    plt.title(title)
     plt.xlabel("Pays")
     plt.ylabel("Pays")
     plt.tight_layout()
@@ -41,5 +41,10 @@ def plot_heatmap(data):
 
 # 4. Execution de mon fichiers CSV
 df_results = load_csv("/results.csv")
+
+# Filtre les equipes 
+if df_results is not None:
+    df_results = df_results[df_results["tournament"].isin(["FIFA World Cup", "UEFA Euro"])]
+
 heatmap = preprocess_heatmap_data(df_results, top_n_teams=15)
 plot_heatmap(heatmap)
