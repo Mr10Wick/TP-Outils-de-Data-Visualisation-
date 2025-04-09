@@ -76,9 +76,9 @@ def plot_wins_losses(df_results, top_n=15):
 
 ℹ️ Exécution avec les fichiers CSV
 
-# Chargement des fichiers CSV
 df_results = load_csv("/results.csv")
 df_goals = load_csv("/goalscorers.csv")
+
 
 # Traitement et visualisation
 if df_results is not None:
@@ -92,6 +92,7 @@ if df_goals is not None:
 if df_results is not None:
     plot_wins_losses(df_results, top_n=15)
 Les données sont filtrées pour ne conserver que les matchs des compétitions majeures (FIFA World Cup et UEFA Euro).
+
 
 Conclusion : 
 
