@@ -2,24 +2,24 @@ TP : Visualisation des Confrontations Internationales – Football
 
 Ce projet Python permet de visualiser les confrontations fréquentes entre nations de football à partir de données issues de Kaggle.
 
-Dataset utilisé : 
+# Dataset utilisé : 
 
 results.csv : Résultats des matchs internationaux (équipe à domicile, à l’extérieur, score, etc.)
 goalscorers.csv : Buteurs par match
 Source : Kaggle – International Football Results
 
-Librairies utilisées : 
+# Librairies utilisées : 
 
 pandas : Manipulation des données
 seaborn : Graphiques élégants
 matplotlib : Personnalisation des graphiques
 
-📌 Structure du code
+# 📌 Structure du code
 
-Le code est divisé en 5 fonctions principales :
+# Le code est divisé en 5 fonctions principales :
 
 
-1. Chargement des données
+# 1. Chargement des données
 def load_csv(filepath):
     try:
         return pd.read_csv(filepath)
@@ -28,7 +28,7 @@ def load_csv(filepath):
         return None
 
 
-2. Prétraitement pour la heatmap des confrontations
+# 2. Prétraitement pour la heatmap des confrontations
 
 def preprocess_heatmap_data(df_results, top_n_teams=15):
     df_results["match_pair"] = df_results.apply(lambda x: tuple(sorted([x["home_team"], x["away_team"]])), axis=1)
@@ -38,7 +38,7 @@ def preprocess_heatmap_data(df_results, top_n_teams=15):
     heatmap_data = match_counts.pivot(index="team1", columns="team2", values="count").fillna(0)
     
 
-3. Visualisation de la heatmap
+# 3. Visualisation de la heatmap
 
 def plot_heatmap(data):
     plt.figure(figsize=(12,10))
@@ -49,7 +49,7 @@ def plot_heatmap(data):
 
 
 
-4. Visualisation des meilleurs buteurs
+# 4. Visualisation des meilleurs buteurs
 
 def plot_top_scorers(df_goals):
     top_scorers = df_goals[df_goals["own_goal"] == False]["scorer"].value_counts().head(10).reset_index()
@@ -60,7 +60,7 @@ def plot_top_scorers(df_goals):
     plt.show()
 
    
-5. Visualisation des victoires et défaites par pays
+# 5. Visualisation des victoires et défaites par pays
 
 
 def plot_wins_losses(df_results, top_n=15):
@@ -74,7 +74,7 @@ def plot_wins_losses(df_results, top_n=15):
     plt.show()
 
 
-ℹ️ Exécution avec les fichiers CSV
+# ℹ️ Exécution avec les fichiers CSV
 
 df_results = load_csv("/results.csv")
 df_goals = load_csv("/goalscorers.csv")
@@ -94,7 +94,7 @@ if df_results is not None:
 Les données sont filtrées pour ne conserver que les matchs des compétitions majeures (FIFA World Cup et UEFA Euro).
 
 
-Conclusion : 
+# Conclusion : 
 
 
 Ce projet permet de visualiser les confrontations, les meilleurs buteurs et les performances des équipes dans les compétitions internationales à travers des graphiques interactifs.
